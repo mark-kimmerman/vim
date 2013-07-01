@@ -79,3 +79,7 @@ map - 80<bar>
 let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 set colorcolumn=81
 
+" Color lines by keyword
+hi doneTask     guifg=#FFFFFF       guibg=#00FF00       gui=bold
+            \   ctermfg=white       ctermbg=lightgreen         cterm=bold
+:let w:m2=matchadd('doneTask', '^.*:done', -1)
