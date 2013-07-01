@@ -4,6 +4,7 @@
 let mapleader=","
 set nocompatible
 set ruler
+set backspace=indent,eol,start
 
 set nowrap
 set showmatch
@@ -24,6 +25,9 @@ set undolevels=1000
 set nobackup
 set noswapfile
 
+" Who needs a mouse?
+set mouse-=a
+
 " -------------------------------------------------------------------------
 "  Pretty Things
 
@@ -34,20 +38,29 @@ colorscheme candycode
 " -------------------------------------------------------------------------
 "  Some Custom Mappings
 
+map <C-c> "+y
 imap <C-BS> <C-W>
-map <F2> :echo 'Current Time: ' . strftime('%c')<CR>
+map <F1> :echo 'Current Time: ' . strftime('%c')<CR>
+"   <F2> line numbers
 set pastetoggle=<F3>
 map! ,h1 <H1></H1><ESC>2ba
 
 map ; :
 
-" Clear highlights
+" Spell Check toggle: zg-good, zw-incorrect
+set spelllang=en_us
+map <F4> :set spell!<CR><BAR>:echo "Spell: " . strpart("OffOn", 3 * &spell, 3)<CR>
+
+
+" Highlight Rules
+set hlsearch
 nmap <silent> <space> :nohlsearch<CR>
 
 " Treat long lines as break lines
 map j gj
 map k gk
 
+" Switch between tabs easily
 map J gT
 map K gt
 
@@ -62,3 +75,4 @@ map = /\%>80v.\+<CR>
 map - 80<bar>
 let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
 set colorcolumn=81
+
