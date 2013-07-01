@@ -17,6 +17,8 @@ set nonumber
 nnoremap <F2> :set nonumber!<CR>
 filetype on
 filetype indent on
+set cursorline
+set cursorcolumn
 
 set history=1000
 set undolevels=1000
@@ -37,6 +39,7 @@ colorscheme candycode
 
 " -------------------------------------------------------------------------
 "  Some Custom Mappings
+" 		Includes F{1, 2, 3, 4}
 
 map <C-c> "+y
 imap <C-BS> <C-W>
