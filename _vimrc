@@ -39,11 +39,13 @@ colorscheme candycode
 
 " -------------------------------------------------------------------------
 "  Some Custom Mappings
-" 		Includes F{1, 2, 3, 4}
+" 		Includes F{1, 2, 3, 4, 5}
+
+map <F1> :echo '<F1>  : Show Help' \| :echo '<F2>  : Toggle Line Numbers' \| :echo '<F3>  : Paste Toggle' \| :echo '<F4>  : Spell Toggle' \| :echo '<F5>  : Insert 80 character divider' \| :echo '<F10> : Remove highlighting of long lines' \| :echo '<=>   : Go to long line' \| :echo '<->   : Go to column 80'<CR>
 
 map <C-c> "+y
+map <C-v> "+gP
 imap <C-BS> <C-W>
-map <F1> :echo 'Current Time: ' . strftime('%c')<CR>
 "   <F2> line numbers
 set pastetoggle=<F3>
 map! ,h1 <H1></H1><ESC>2ba
@@ -77,9 +79,16 @@ map <right> <nop>
 map = /\%>80v.\+<CR>
 map - 80<bar>
 let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
+map <F10> :call matchdelete(w:m1)<CR>
 set colorcolumn=81
 
 " Color lines by keyword
 hi doneTask     guifg=#FFFFFF       guibg=#00FF00       gui=bold
             \   ctermfg=white       ctermbg=lightgreen         cterm=bold
-:let w:m2=matchadd('doneTask', '^.*:done', -1)
+let w:m2=matchadd('doneTask', '^.*:done', -1)
+
+hi yellowLine     guifg=#F58EEE       guibg=#FFE303       gui=bold
+            \   ctermfg=white       ctermbg=yellow         cterm=bold
+let w:m3=matchadd('yellowLine', '\*\{80}', 0)
+nmap <F5> 80i*<ESC>^
+imap <F5> <ESC><F5>
