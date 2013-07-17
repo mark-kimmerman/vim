@@ -8,6 +8,7 @@ set backspace=indent,eol,start
 
 set nowrap
 set showmatch
+set scrolloff=4
 
 set shiftwidth=4
 set tabstop=4
@@ -39,14 +40,15 @@ colorscheme candycode
 
 " -------------------------------------------------------------------------
 "  Some Custom Mappings
-" 		Includes F{1, 2, 3, 4, 5}
+" 		Includes F{1, 2, 3, 4, 5, 10}
 
-map <F1> :echo '<F1>  : Show Help' \| :echo '<F2>  : Toggle Line Numbers' \| :echo '<F3>  : Paste Toggle' \| :echo '<F4>  : Spell Toggle' \| :echo '<F5>  : Insert 80 character divider' \| :echo '<F10> : Remove highlighting of long lines' \| :echo '<=>   : Go to long line' \| :echo '<->   : Go to column 80'<CR>
+map <F1> :echo '<F1>  : Show Help' \| :echo '<F2>  : Toggle Line Numbers' \| :echo '<F3>  : Paste Toggle' \| :echo '<F4>  : Spell Toggle' \| :echo '<F5>  : Insert 80 character divider' \| :echo '<F6>  : ROT13 file' \| :echo '<F10> : Find long lines' \| :echo '-     : Explore adjacent files<CR>
 
 map <C-c> "+y
 map <C-v> "+gP
 imap <C-BS> <C-W>
 "   <F2> line numbers
+map - :Explore<CR>
 set pastetoggle=<F3>
 map! ,h1 <H1></H1><ESC>2ba
 
@@ -56,6 +58,8 @@ map ; :
 set spelllang=en_us
 map <F4> :set spell!<CR><BAR>:echo "Spell: " . strpart("OffOn", 3 * &spell, 3)<CR>
 
+"Rotate all text by 13 : ROT13
+map <F6> ggg?G''
 
 " Highlight Rules
 set hlsearch
@@ -76,10 +80,7 @@ map <left> <nop>
 map <right> <nop>
 
 " Find long lines! 
-map = /\%>80v.\+<CR>
-map - 80<bar>
-let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
-map <F10> :call matchdelete(w:m1)<CR>
+map <F10> /\%>80v.\+<CR>
 set colorcolumn=81
 
 " Color lines by keyword
