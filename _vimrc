@@ -11,6 +11,7 @@ set showmatch
 set scrolloff=4
 
 set shiftwidth=4
+set expandtab
 set tabstop=4
 set autoindent smartindent
 " set copyindent
@@ -57,6 +58,7 @@ map ; :
 " Spell Check toggle: zg-good, zw-incorrect
 set spelllang=en_us
 map <F4> :set spell!<CR><BAR>:echo "Spell: " . strpart("OffOn", 3 * &spell, 3)<CR>
+map zz 1z=
 
 "Rotate all text by 13 : ROT13
 map <F6> ggg?G''
