@@ -15,7 +15,7 @@ set expandtab
 set tabstop=4
 set autoindent smartindent
 " set copyindent
-set nonumber
+set number
 nnoremap <F2> :set nonumber!<CR>
 filetype on
 filetype indent on
