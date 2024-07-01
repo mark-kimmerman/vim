@@ -7,7 +7,6 @@ inoremap <esc> <nop>
 noremap - :Explore<cr>
 nnoremap <leader><leader> :q<cr>
 inoremap kj <esc>
-inoremap lkj <esc>:w<cr>
 set t_BE= " fixes paste issue (https://vimhelp.org/term.txt.html#xterm-bracketed-paste)
 " }}}
 
@@ -56,21 +55,6 @@ set incsearch
 nnoremap <silent> <space> :nohlsearch<CR>
 " }}}
 
-
-"  Vundle Settings {{{
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'othree/yajs.vim'
-
-call vundle#end()
-filetype plugin indent on
-" }}}
-
 " -------------------------------------------------------------------------
 "  Operational Settings
 
@@ -105,6 +89,7 @@ set noswapfile
 
 syntax enable
 colorscheme candycode
+set lazyredraw
 
 " -------------------------------------------------------------------------
 
@@ -118,23 +103,3 @@ filetype on
 au BufNewFile,BufRead *.blade.php set filetype=html
 au BufNewFile,BufRead *.ejs set filetype=html
 highlight LineNr ctermfg=white
-
-call plug#begin('~/.vim/plugged')
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-call plug#end()
-
-" Prettier Setup
-augroup prettier
-    autocmd!
-    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
-augroup END
-let g:prettier#autoformat = 0
-let g:prettier#config#semi = 'true'
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#tab_width = 4
-let g:prettier#config#trailing_comma = 'es5'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-
-
