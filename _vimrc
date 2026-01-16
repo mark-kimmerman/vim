@@ -91,6 +91,22 @@ syntax enable
 colorscheme candycode
 set lazyredraw
 
+" Performance optimizations for syntax highlighting (especially TypeScript)
+set re=0 " Use newer regex engine (faster for TypeScript)
+set synmaxcol=300 " Only highlight first 300 columns (prevents slowdown on long lines)
+set redrawtime=10000 " Give Vim more time before disabling syntax (10 seconds)
+set updatetime=1000 " Faster updates
+set ttyfast " Faster terminal connection
+
+" Syntax synchronization - limits how many lines Vim examines for syntax sync
+syntax sync minlines=100
+syntax sync maxlines=300
+
+" Disable expensive features for TypeScript files (major performance hit)
+au FileType typescript,typescriptreact setlocal nocursorline nocursorcolumn
+au FileType typescript,typescriptreact setlocal synmaxcol=200
+au FileType typescript,typescriptreact setlocal nofoldenable " Disable folding completely
+
 " -------------------------------------------------------------------------
 
 " Treat long lines as break lines
@@ -100,6 +116,9 @@ map k gk
 " Re-jigger file types
 syntax on
 filetype on
+filetype plugin indent on
 au BufNewFile,BufRead *.blade.php set filetype=html
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.ts set filetype=typescript
+au BufNewFile,BufRead *.tsx set filetype=typescriptreact
 highlight LineNr ctermfg=white
